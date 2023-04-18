@@ -4,8 +4,11 @@ import ballerina/graphql.subgraph;
 
 @subgraph:Subgraph
 service on new graphql:Listener(4002) {
-    resource function get info() returns string {
-        return "Review service";
+    resource function get reviews(string productId) returns Review[]|error {
+        if (!products.hasKey(productId)) {
+            return error("No product found for the given product id");
+        }
+        return products.get(productId).reviews;
     }
 
     remote function addReview(ReviewInput reviewInput) returns Review|error {
