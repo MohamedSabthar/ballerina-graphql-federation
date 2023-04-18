@@ -1,6 +1,6 @@
 import ballerina/uuid;
 
-Product[] products = [
+table<Product> key(id) products = table [
     {
         id: "1",
         reviews: [

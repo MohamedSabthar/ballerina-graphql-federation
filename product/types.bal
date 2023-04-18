@@ -4,7 +4,7 @@ import ballerina/graphql.subgraph;
     key: "id"
 }
 public type Product record {
-    string id;
+    readonly string id;
     string title;
     string description;
     int price;

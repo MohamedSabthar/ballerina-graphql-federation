@@ -1,4 +1,4 @@
-Product[] products = [
+table<Product> key(id) products = table [
     {
         id: "1",
         title: "Knife",

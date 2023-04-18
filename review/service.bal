@@ -9,11 +9,10 @@ service on new graphql:Listener(4002) {
     }
 
     remote function addReview(ReviewInput reviewInput) returns Review|error {
-        var filterdProducts = products.filter(product => product.id == reviewInput.productId);
-        if (filterdProducts.length() == 0) {
+        if (!products.hasKey(reviewInput.productId)) {
             return error("No product found for the given product id");
         }
-        Review[] reviews = filterdProducts[0].reviews;
+        Review[] reviews = products.get(reviewInput.productId).reviews;
         Review review = {...reviewInput, id: uuid:createType1AsString()};
         reviews.push(review);
         return review;

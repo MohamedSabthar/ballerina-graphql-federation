@@ -5,7 +5,7 @@ import ballerina/graphql.subgraph;
     resolveReference: resolveProduct
 }
 public type Product record {
-    string id;
+    readonly string id;
     Review[] reviews;
 };
 
